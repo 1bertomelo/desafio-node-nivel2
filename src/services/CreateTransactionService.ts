@@ -21,7 +21,7 @@ class CreateTransactionService {
   public execute({ title, value, type }: Request): Transaction {
     const resultBalance = this.transactionsRepository.getBalance();
     if (type === 'outcome' && value > resultBalance.total) {
-      throw Error("outcome cannot be greater than income");
+      throw Error("outcome cannot be greater than total");
     }
 
     const newTransaction = this.transactionsRepository.create({ title, value, type });
